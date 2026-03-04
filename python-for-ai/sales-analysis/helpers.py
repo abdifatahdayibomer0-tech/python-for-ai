@@ -1,5 +1,5 @@
 
-
+# this is the helpers.py file for the sales analysis project.
 def calculate_total(quantity, price):
     """Calculate total for a single item"""
     return quantity * price

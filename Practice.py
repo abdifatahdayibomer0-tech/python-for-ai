@@ -1,2 +1,2 @@
-with open("PIG_GAME.py", "w") as f:
-    f.write('import random')
+with open("Chatbot.py", "w") as fl:
+    fl.write("# This is a chatbot file\n")

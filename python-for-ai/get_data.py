@@ -1,7 +1,8 @@
-import requests
 from datetime import datetime, timedelta
-import pandas as pd
+
 import matplotlib.pyplot as plt
+import pandas as pd
+import requests
 
 # Calculate dates
 today = datetime.now()
@@ -19,43 +20,45 @@ data = response.json()
 print(data)
 
 
-#-------------------------------
+# -------------------------------
 
 
 # Extract the daily data
-daily_data = data['daily']
+daily_data = data["daily"]
 
 # Create a DataFrame
-df = pd.DataFrame({
-    'date': daily_data['time'],
-    'max_temp': daily_data['temperature_2m_max'],
-    'min_temp': daily_data['temperature_2m_min'],
-    'rainfall_mm': daily_data['precipitation_sum']
-})
+df = pd.DataFrame(
+    {
+        "date": daily_data["time"],
+        "max_temp": daily_data["temperature_2m_max"],
+        "min_temp": daily_data["temperature_2m_min"],
+        "rainfall_mm": daily_data["precipitation_sum"],
+    }
+)
 
 # Convert date strings to datetime
-df['date'] = pd.to_datetime(df['date'])
+df["date"] = pd.to_datetime(df["date"])
 
 print(df)
 
-#-------------------------------
+# -------------------------------
 
 # Create the plot
 plt.figure(figsize=(10, 6))
 
 # Temperature lines
-plt.plot(df['date'], df['max_temp'], marker='o', label='Max Temp (°C)')
-plt.plot(df['date'], df['min_temp'], marker='o', label='Min Temp (°C)')
+plt.plot(df["date"], df["max_temp"], marker="o", label="Max Temp (°C)")
+plt.plot(df["date"], df["min_temp"], marker="o", label="Min Temp (°C)")
 
-plt.xlabel('Date')
-plt.ylabel('Temperature (°C)')
-plt.title('Djibouti Weather - Past 7 Days')
+plt.xlabel("Date")
+plt.ylabel("Temperature (°C)")
+plt.title("Djibouti Weather - Past 7 Days")
 plt.xticks(rotation=45)
 
 # Second axis for rainfall
 ax2 = plt.twinx()
-ax2.bar(df['date'], df['rainfall_mm'], alpha=0.3, label='Rainfall (mm)')
-ax2.set_ylabel('Rainfall (mm)')
+ax2.bar(df["date"], df["rainfall_mm"], alpha=0.3, label="Rainfall (mm)")
+ax2.set_ylabel("Rainfall (mm)")
 
 plt.tight_layout()
 plt.show()
@@ -63,9 +66,9 @@ plt.show()
 import os
 
 # Create data folder if it doesn't exist
-if not os.path.exists('data'):
-    os.makedirs('data')
+if not os.path.exists("data"):
+    os.makedirs("data")
 
 # Save to CSV
-df.to_csv('data/kampala_weather_with_rainfall.csv', index=False)
+df.to_csv("data/kampala_weather_with_rainfall.csv", index=False)
 print("Data saved to data/kampala_weather_with_rainfall.csv")
