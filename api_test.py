@@ -1,5 +1,7 @@
 # This is a test file for API testing
 
+# Get request
+
 import requests
 
 URL = "https://jsonplaceholder.typicode.com/posts/1"
@@ -11,3 +13,14 @@ print(data)
 
 if response.status_code == 200:
     print("\nSuccess! status code: 200")
+
+# Post request
+
+import requests
+
+data = {"title": "AI Developer", "body": "learning HTTP Methods", "userId": 1}
+
+response = requests.post("https://jsonplaceholder.typicode.com/posts", json=data)
+
+print(response.status_code)
+print(response.json())
