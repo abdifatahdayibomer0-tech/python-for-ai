@@ -16,8 +16,6 @@ if response.status_code == 200:
 
 # Post request
 
-import requests
-
 data = {"title": "AI Developer", "body": "learning HTTP Methods", "userId": 1}
 
 response = requests.post("https://jsonplaceholder.typicode.com/posts", json=data)
